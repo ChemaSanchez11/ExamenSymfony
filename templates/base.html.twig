@@ -18,6 +18,7 @@
         {% block nav %}
             <header>
                 {% if app.user %}
+                    <img src="{{ asset('images/') }}{{ app.user.company.image }}" class="img-fluid" height="50px" width="50px">
                     <div class="mx-2 my-1 text-right">
                         <a href="{{path("app_user_profile")}}"><i class="fa-solid fa-user"></i> <b>{{ app.user.userIdentifier }}({{ app.user.dni }})</b></a>  - <a href="{{path('app_company_show', {'nif':app.user.company.nif})}}">{{app.user.company.title}}({{app.user.company.nif}})</a> <a href="{{ path('app_logout') }}">Logout</a>
                     </div>

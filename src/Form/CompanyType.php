@@ -6,6 +6,8 @@ use App\Entity\Company;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CompanyType extends AbstractType
 {
@@ -15,6 +17,21 @@ class CompanyType extends AbstractType
             ->add('title')
             ->add('nif')
             ->add('ccc')
+            ->add('imagen', FileType::class, [
+                'label' => 'Imagen de la compañia',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Solo PNG o JPG'
+                    ])
+                ],
+            ])
         ;
     }
 

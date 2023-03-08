@@ -12,9 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class WarehouseController extends AbstractController
 {
+
+    #[IsGranted('ROLE_ALMACEN')]
+
     #[Route('/warehouse', name: 'app_warehouse')]
     public function index(TaskRepository $taskRepository, EventRepository $eventRepository): Response
     {
